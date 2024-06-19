@@ -3,6 +3,7 @@ import vine, { errors } from "@vinejs/vine";
 import { registerSchema, loginSchema } from "../validations/auth.validation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { ApiError } from "../utils/ApiError.js";
 class AuthController {
     static async register(req, res) {
         try {
@@ -43,7 +44,8 @@ class AuthController {
                 return res.status(400).json({ errors: error.messages })
             }
             else {
-                res.status(500).json({ status: 500, error: "Internal server error" })
+                // res.status(500).json({ status: 500, error: "Internal server error" })
+                throw new ApiError(500, "Internal server error")
             }
         }
     }
@@ -95,7 +97,8 @@ class AuthController {
                 return res.status(400).json({ errors: error.messages })
             }
             else {
-                res.status(500).json({ status: 500, error: "Internal server error" })
+                // res.status(500).json({ status: 500, error: "Internal server error" })
+                throw new ApiError(500, "Internal server error")
             }
         }
     }

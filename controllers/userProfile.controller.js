@@ -34,7 +34,8 @@ class profileContoller {
 
 
         } catch (error) {
-            return res.status(500).json({ status: 500, error: "Internal server error" })
+            // return res.status(500).json({ status: 500, error: "Internal server error" })
+            throw new Error(500, "Internal server error")
 
         }
     }
@@ -44,7 +45,8 @@ class profileContoller {
             const user = req.user
             return res.json({ status: 200, user })
         } catch (error) {
-            return res.status(500).json({ status: 500, error: "Internal server error" })
+            // return res.status(500).json({ status: 500, error: "Internal server error" })
+            throw new Error(500, "Internal server error")
         }
     }
 
@@ -53,7 +55,8 @@ class profileContoller {
             const { id } = req.params
 
             if (!req.files || Object.keys(req.files).length === 0) {
-                return res.status(400).json({ status: 400, message: "Profile Image is Required" })
+                // return res.status(400).json({ status: 400, message: "Profile Image is Required" })
+                throw new Error(400, "Profile Image is Required")
             }
 
             const profile = req.files.profile
@@ -90,12 +93,14 @@ class profileContoller {
             })
         }
         catch (error) {
-            return res.status(500).json(
-                {
-                    status: 500,
-                    error: "Internal server error"
-                }
-            )
+            // return res.status(500).json(
+            //     {
+            //         status: 500,
+            //         error: "Internal server error"
+            //     }
+            // )
+            throw new ApiError(500, 'Internal server error')
+
         }
 
     }
