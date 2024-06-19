@@ -5,5 +5,6 @@
 
 1. Node.js
 2. Express.js
-3. Prisma
-4. Redis
+3. Postgres SQL
+4. Prisma
+5. Redis
