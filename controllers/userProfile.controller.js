@@ -28,7 +28,8 @@ class profileContoller {
 
             users = await prisma.users.findMany();
 
-            await redis.setex("users", 30, JSON.stringify(users))
+            await redis.set("users", JSON.stringify(users))
+            await redis.expire("users", 30)
             return res.json({ status: 200, users })
 
 
