@@ -4,7 +4,8 @@ import fileUpload from "express-fileupload"
 import router from "./routes/user.route.js"
 import helmet from "helmet"
 import cors from "cors"
-import { redis } from "./config/redis.config.js"
+import { redis } from "./db/redis.config.js"
+import consola from "consola"
 
 const app = express()
 
@@ -25,9 +26,9 @@ app.use('/api/v1', router)
 
 
 redis.on("connect", () => {
-    console.log("Redis Connected");
+    consola.success("Redis Connected");
 })
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
+    consola.success(`Server is running on port ${port}`)
 })

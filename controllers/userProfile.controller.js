@@ -1,6 +1,7 @@
 import prisma from "../db/dbConfig.js"
 import { imageValidator } from "../utils/helper.js"
-import { redis } from "../config/redis.config.js"
+import { redis } from "../db/redis.config.js"
+import consola from "consola";
 
 class profileContoller {
 
@@ -18,7 +19,7 @@ class profileContoller {
 
             if (users) {
                 // const users = await redis.get("users")
-                console.log("got from cache");
+                consola.info("got from cache");
                 return res.status(201).json({
                     status: 201, users: JSON.parse(users)
                 })
